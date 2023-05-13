@@ -4,6 +4,6 @@
   </td>
 <% else %>
   <td><%= link_to book_favorites_path(book), method: :post do %><span class="text-danger text-opacity-50">♡</span><% end %>
-<% book.favorites.count %>
+  <%= book.favorites.count %>
   </td>
 <% end %>

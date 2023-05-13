@@ -1,0 +1,18 @@
+.table {
+  table-layout: fixed
+}
+
+
+.book-body {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/*.book-tytle {*/
+/*  display: block;*/
+/*  overflow: hidden;*/
+/*  white-space: nowrap;*/
+/*  text-overflow: ellipsis;*/
+/*}*/
