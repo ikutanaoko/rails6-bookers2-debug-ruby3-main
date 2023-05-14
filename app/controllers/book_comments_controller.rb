@@ -7,12 +7,14 @@ def create
   @comment.user_id = current_user.id
   @comment.book_id = book.id
   if @comment.save
-    redirect_to book_path(book)
+    redirect_back fallback_location: user_path(current_user.id)
   else
+    # @comment = BookComment.new(book_comment_params)
     @book = Book.find(params[:book_id])
     @user = @book.user
     @book_new = Book.new
-    render "books/show"
+    render 'books/show'
+    # redirect_to book_path(@book.id)
   end
 end 
 
@@ -36,3 +38,4 @@ def is_matching_login_user
 end
 
 end
+
