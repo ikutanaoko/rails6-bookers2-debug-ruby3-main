@@ -1,0 +1,25 @@
+<% if users.exists? %>
+  <% users.each do |user| %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>image</th>
+          <th>name</th>
+          <th>フォロー</th>
+          <th>フォロワー</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= image_tag user.get_profile_image, size:'50x50' %></td>
+          <td><%= link_to(users_path) do %><%= user.name %><% end %></td>
+          <td><%= user.followings.count %></td>
+          <td><%= user.followers.count %></td>
+        </tr>
+      </tbody>
+      
+    </table>
+    <% end %>
+  <% else %>
+    <p>ユーザーはいません</p>
+  <% end %>
