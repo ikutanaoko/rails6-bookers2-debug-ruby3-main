@@ -11,11 +11,11 @@
 	  <th><%= user.introduction %></th>
   </tr>
   <tr>
-    <th><%= link_to "フォロワー", user_followers_path(user) %></th>
+    <th><%= link_to "followers", user_followers_path(user) %></th>
     <th><%= user.followers.count %>人</th>
   </tr>
   <tr>
-    <th><%= link_to "フォロー中", user_followings_path(user) %></th>
+    <th><%= link_to "follows", user_followings_path(user) %></th>
     <th><%= user.followings.count %>人</th>
   </tr>
   <% if user != current_user %>
