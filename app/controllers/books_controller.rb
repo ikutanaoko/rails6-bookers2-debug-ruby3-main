@@ -2,11 +2,8 @@ class BooksController < ApplicationController
   before_action :is_matching_login_user, only: [:update,:edit]
 
   def show
-    if params[:book_id]
-      @book = Book.find(params[:book_id])
-    else
-      @book = Book.find(params[:id])
-    end
+
+    @book = Book.find(params[:id])
     @user = @book.user
     @book_new = Book.new
     @comment = BookComment.new
