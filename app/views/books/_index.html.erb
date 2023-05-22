@@ -18,16 +18,9 @@
         </td>
         <td class="book-tytle"><%= link_to book.title,book %></td>
         <td class="book-body"><%= book.body %></td>
-        
-      <% if book.favorited_by?(current_user) %>
-        <td><%= link_to book_favorites_path(book), method: :delete do %><span class="text-danger text-opacity-50">♥</span><% end %>
-          <%= book.favorites.count %>
+        <td id="favorite_buttons_<%= book.id %>">
+          <%= render "favorites/favorite-btn", book: book %>
         </td>
-      <% else %>
-        <td><%= link_to book_favorites_path(book), method: :post do %><span class="text-danger text-opacity-50">♡</span><% end %>
-          <%= book.favorites.count %>
-        </td>
-      <% end %>
         <td><span><%= book.book_comments.count %></span>件
         </td>
       </tr>

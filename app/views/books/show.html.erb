@@ -10,14 +10,16 @@
   		<h2>Book detail</h2>
   		<table class='table'>
   		  <tr>
-          <td><%= link_to(@book.user) do %>
+          <td><%= link_to(@book.user) do %>  
             <%= image_tag @book.user.get_profile_image, size:"50x50" %><br>
             <%= @book.user.name %>
             <% end %>
           </td>
           <td class="book-tytle"><%= link_to @book.title, @book %></td>
           <td class="book-body"><%= @book.body %></td>
-          <%= render 'books/favorite', book: @book %>
+          <td id="favorite_buttons_<%= @book.id %>">
+            <%= render "favorites/favorite-btn", book: @book %>
+          </td>
           <td>コメント<span><%= @book.book_comments.count %></span>件
           </td>
           <% if current_user.id == @book.user.id %>

@@ -1,0 +1,8 @@
+<% if book.favorited_by?(current_user) %>
+  <%= link_to book_favorites_path(book), method: :delete, remote: true do %><span class="text-danger text-opacity-50">♥</span><% end %>
+    <%= book.favorites.count %>
+    <% else %>
+  <%= link_to book_favorites_path(book), method: :post, remote: true do %><span class="text-danger text-opacity-50">♡</span><% end %>
+    <%= book.favorites.count %>
+  
+<% end %>
