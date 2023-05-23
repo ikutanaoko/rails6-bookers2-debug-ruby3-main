@@ -19,9 +19,8 @@
           <td class="book-body"><%= @book.body %></td>
           <td id="favorite_buttons_<%= @book.id %>">
             <%= render "favorites/favorite-btn", book: @book %>
-          </td>
-          <td>コメント<span　id="comment_count"><%= @book.book_comments.count %></span>件
-          </td>
+          </td>       
+          <td>コメント<span id="comment_count"><%= @book.book_comments.count %></span>件</td>
           <% if current_user.id == @book.user.id %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
