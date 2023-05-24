@@ -15,6 +15,12 @@ import "../stylesheets/application"
 import "../stylesheets/mystyle"
 import "script.js"
 
+import Raty from "raty.js"
+window.raty = function(elem,opt) {
+  let raty = new Raty(elem,opt)
+  raty.init()
+}
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

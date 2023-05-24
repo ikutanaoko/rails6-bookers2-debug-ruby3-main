@@ -17,6 +17,7 @@
           </td>
           <td class="book-tytle"><%= link_to @book.title, @book %></td>
           <td class="book-body"><%= @book.body %></td>
+          <td><%= render "books/static_rate", book: @book %></td>
           <td id="favorite_buttons_<%= @book.id %>">
             <%= render "favorites/favorite-btn", book: @book %>
           </td>       

@@ -1,11 +1,11 @@
 <table class='table table-hover table-inverse'>
   <thead>
     <tr>
-      <th style="wifth: 5%"></th>
-      <th style="width: 15%">Title</th>
-      <th style="width: 50%">Opinion</th>
-      <th style="wifth: 5%"></th>
-      <th style="wifth: 25%"></th>
+      <th ></th>
+      <th >Title</th>
+      <th >Opinion</th>
+      <th ></th>
+      <th ></th>
 
     </tr>
   </thead>
@@ -18,6 +18,7 @@
         </td>
         <td class="book-tytle"><%= link_to book.title,book %></td>
         <td class="book-body"><%= book.body %></td>
+        <td><%= render "books/static_rate", book: book %></td>
         <td id="favorite_buttons_<%= book.id %>">
           <%= render "favorites/favorite-btn", book: book %>
         </td>
