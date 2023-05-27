@@ -9,34 +9,10 @@
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
-        <!--<form id="form">-->
-        <!--  <select name="select">-->
-        <!--    <option value="latest">新しい順</option>-->
-        <!--    <option value="old">古い順</option>-->
-        <!--    <option value="star">評価の高い順</option>-->
-            
-        <!--  </select>-->
-        <!--</form>-->
-        <%= link_to '新しい順', books_path(latest: "true") %>
-        <%= link_to '古い順', books_path(old: "true") %>
-        <%= link_to '評価の高い順', books_path(star_count: "true") %>
+      <%= render '/layouts/sort' %>
+      <div id="index">
       <%= render 'index', books: @books %>
+      </div>
     </div>
   </div>
 </div>
-
-<script>
-  // $(document).ready(function() {
-  //   $('#select-box').on('change' function() {
-  //     var selectedOption = $(this).children("option:selected").val();
-  //     if (selectedOption === "latest") {
-  //       window.location.href = "<%= books_path(latest: true) %>";
-  //     } else if (selectedOption === "old") {
-  //       window.location.href = "<%= books_path(old: true) %>";
-  //     } else if (selectedOption === "star") {
-  //       window.location.href = "<%= books_path(star_count: true) %>";
-  //     }
-  //   });
-  // });
-
-</script>

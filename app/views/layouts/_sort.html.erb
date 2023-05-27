@@ -1,0 +1,4 @@
+      <%= form_with url: books_path, local: false, method: :get do |f| %>
+              <%= f.select :sort, options_for_select([["新しい順","latest"],["古い順","old"],["評価の高い順","star_count"]]) %>
+              <%= f.submit "並べ替え" %>
+      <% end %>
