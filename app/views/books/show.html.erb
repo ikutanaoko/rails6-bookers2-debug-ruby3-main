@@ -33,7 +33,11 @@
             <%= render "favorites/favorite-btn", book: @book %>
           </td>       
           <td>コメント<span id="comment_count"><%= @book.book_comments.count %></span>件</td>
-          <td class="book_category"><%= link_to @book.category, search_book_path(keyword: @book.category), class: "btn btn-secondary btn-sm btn-block", style: "font-size: 5px;" %></td>
+          <td class="book_category">
+          <% @book.tags.each do |tag| %>
+            <%= link_to tag.name, search_path(word: tag.name, range:"tag", search: "perfect_match"), class: "btn btn-secondary btn-sm btn-block", style: "font-size: 5px;" %>
+          <% end %>
+          </td>
           <% if current_user.id == @book.user.id %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success", style: "font-size: 12px;" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'are you sure?' }, class: "btn btn-sm btn-danger", style: "font-size: 12px;"%></td>

@@ -12,10 +12,8 @@ Rails.application.routes.draw do
   get "book_comments"=>"books#show"
   
   end
-
-  get "search" => "searches#search"
   
-  get "search_book" => "books#search_book"
+  get "search" => "searches#search"
   
   resources :users, only: [:index,:show,:edit,:update] do
     resource :relationships, only: [:create, :destroy]

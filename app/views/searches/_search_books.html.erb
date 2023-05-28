@@ -11,7 +11,6 @@
               <td><%= image_tag book.user.get_profile_image, size: '50x50' %></td>
               <td class="book_tytle"><%=link_to books_path do %><%= book.title %><% end %></td>
               <td class="book_body"><%= book.body %></td>
-              <td class="book_category"><%= link_to book.category, search_book_path(keyword: book.category), class: "btn btn-secondary btn-sm btn-block", style: "font-size: 5px;" %></td>
             </tr>
             <% end %>
           </tbody>

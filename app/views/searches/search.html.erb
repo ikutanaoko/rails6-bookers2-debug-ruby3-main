@@ -8,7 +8,13 @@
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Results index</h2>
-      <table class="table table-inverse">
+        <% @tag_list.each do |list| %>
+          <span>
+            <%= link_to "#{list.name}(#{list.books.count})", search_path(word: list.name, range: "tag", search: "perfect_match"), class: "btn btn-secondary btn-sm ", style: "font-size: 5px;" %>
+            <% end %>
+          </span>
+        
+      <table class="table table-inverse mt-3">
         <% if @range == "User" %>
           <thead>
             <tr>
