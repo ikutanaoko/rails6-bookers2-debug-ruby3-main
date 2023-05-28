@@ -9,6 +9,12 @@
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
   		<table class='table'>
+  		  <thead>
+  		    <th style="width: 20%"></th>
+  		    <th style="width: 30%"></th>
+  		    <th style="width: 50%"></th>
+  		  </thead>
+  		  <tbody>
   		  <tr class="table_data">
           <td><%= link_to(@book.user) do %>  
             <%= image_tag @book.user.get_profile_image, size:"50x50" %><br>
@@ -17,6 +23,11 @@
           </td>
           <td class="book-tytle"><%= link_to @book.title, @book %></td>
           <td class="book-body"><%= @book.body %></td>
+        </tr>
+        </tbody>
+      </table>
+      <table class='table'>
+        <tr>
           <td><%= render "books/static_rate", book: @book %></td>
           <td id="favorite_buttons_<%= @book.id %>">
             <%= render "favorites/favorite-btn", book: @book %>

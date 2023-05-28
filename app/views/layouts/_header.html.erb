@@ -56,7 +56,7 @@
   </nav>
   <div class="container">
     <div class="row mt-2">
-      <div class="mx-auto col-5">
+      <div class="col-5 offset-1">
         <% if user_signed_in? %>
           <div class="search_form">
             <%= form_with url: search_path, local: true, method: :get do |f| %>
@@ -66,8 +66,16 @@
               <%= f.submit "検索" %>
             <% end %>
           </div>
+      </div>    
+      <div class="col-4">
+          <div class="category_form">
+            <%= form_with url: search_book_path, local: true, method: :get do |f| %>
+              <%= f.text_field :keyword %>
+              <%= f.submit "タグ検索" %>
+            <% end %>
+          </div>
+          
         <% end %>
-        
       </div>
     </div>
   </div>

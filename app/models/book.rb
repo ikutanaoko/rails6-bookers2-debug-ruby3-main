@@ -5,7 +5,7 @@ class Book < ApplicationRecord
   
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
-  validates :star,presence:true
+  
   
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
@@ -41,6 +41,6 @@ class Book < ApplicationRecord
   end
   
   def self.search(keyword)
-    Book.where(['category LIKE?', "#{keyword}"])
+    Book.where('category LIKE?', "#{keyword}")
   end
 end
