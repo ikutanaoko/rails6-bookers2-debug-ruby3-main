@@ -21,7 +21,7 @@ class Book < ApplicationRecord
       return all.order(star: :desc)
     end
   end
-  
+
   # scope :latest, -> {order(created_at: :desc)}
   # scope :old, -> {order(created_at: :asc)}
   # scope :star_count, -> {order(star: :desc)}
@@ -40,4 +40,7 @@ class Book < ApplicationRecord
     end
   end
   
+  def self.search(keyword)
+    Book.where(['category LIKE?', "#{keyword}"])
+  end
 end

@@ -3,10 +3,18 @@
 }
 
 
-.book-body {
+.book_body {
   display: block;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+
 }
 
+.table_data {
+  font-size: 12px;
+}
+
+.book_comments {
+  font-size: 12px;
+}
