@@ -38,6 +38,7 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    @tags = @book.tags.pluck(:name).join('/')
   end
 
   def update

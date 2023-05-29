@@ -9,7 +9,11 @@
   </div>
   <div class="form-group">
     <%= f.label :category %>
+  　<% if book.id.nil? %>
     <%= f.text_field :name, class: 'form-control book_category' %>
+    <% else %>
+    <%= f.text_field :name,value: @tags, class: 'form-control book_category' %>
+    <% end %>
   </div>
   <% if book.id.nil? %>
     <div class="form-group" id="star">
