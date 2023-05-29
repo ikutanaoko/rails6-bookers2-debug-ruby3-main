@@ -28,7 +28,7 @@
           <tbody>
             <% @users.each do |user| %>
             <tr　class="table_data">
-              <td><%= image_tag user.get_profile_image, size: '50x50' %></td>
+              <td><%= image_tag user.get_profile_image(50, 50) %></td>
               <td><%= user.name %></td>
               <td><%= user.followers.count %>人</td>
               <td><%= user.followings.count %>人</td>

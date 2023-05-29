@@ -2,7 +2,7 @@
   <tbody>
     <% book.book_comments.each do |book_comment| %>
       <tr>
-        <td><%= image_tag book_comment.user.get_profile_image, size:"50x50"  %></td>
+        <td><%= image_tag book_comment.user.get_profile_image(50, 50)  %></td>
         <td class="pl-3"><%= link_to(book_comment.user) do %><%= book_comment.user.name %><% end %></td>
         <td class="pl-3"><%= book_comment.comment %></td>
         <td class="pl-3"><%= book_comment.created_at.strftime('%Y/%m/%d') %></td>
