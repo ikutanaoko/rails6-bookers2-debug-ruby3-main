@@ -14,6 +14,7 @@
     <% end %>
   </tbody>
 </table>
+
 <div>
   <%= form_with model: [book, comment], local:false do |f| %>
     <%= f.text_area :comment, rows: '3', placeholder:"コメントをここに", class: 'form-control book_body' %>
