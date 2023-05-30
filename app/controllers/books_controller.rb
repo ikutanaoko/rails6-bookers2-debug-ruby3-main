@@ -15,9 +15,9 @@ class BooksController < ApplicationController
 
     if params[:sort]
       selection = params[:sort]
-      @books = Book.sort(selection)
+      @books = Book.sort(selection).page(params[:page])
     else
-      @books = Book.all
+      @books = Book.page(params[:page])
     end
     @book = Book.new
 
