@@ -1,2 +1,28 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<h1>ダイレクトメッセージ</h1>
+
+<div class="chats">
+  <div class="chat">
+    <% if messages.present? %>
+      <% @messages.each do |message| %>
+        <div class="chat-box">
+          <div class="chat-face">
+            <%= image_tag message.user.get_profile_image(30, 30) %>
+            <strong><% message.user.name %></strong>
+            <%= message.comment %>
+            <%= message.created_at.strftime("%Y-%m-%d %H:%M") %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= alert 
+
+  <div class="posts">
+    <%= form_with model: @message do |f| %>
+      <%= f.text_field :comment, placeholder: "メッセージを入力してください", class:"form-text-field" %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+        <%= f.submit "送信",class: "form-submit" %>
+    <% end %>
+  </div>
+</div>
