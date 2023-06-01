@@ -22,6 +22,7 @@ class Book < ApplicationRecord
       return all.order(created_at: :asc)
     when "star_count"
       return all.order(star: :desc)
+    
     end
   end
 

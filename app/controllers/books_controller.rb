@@ -8,16 +8,37 @@ class BooksController < ApplicationController
     @book_new = Book.new
     @comment = BookComment.new
     @book_tags = @book.tags    
-    @tag_list = Tag.all  
+    @tag_list = Tag.all
+    @currentUserEntry = Entry.where(user_id: current_user.id)
+    @userEntry = Entry.where(user_id: @user.id)
+    unless @user.id == current_user.id
+      @currentUserEntry.each do |cue|
+        @userEntry.each do |ue|
+          if cue.room_id == ue.room_id then
+            @isRoom = true
+            @chatroom = cue.room_id
+          else
+            @room = Room.new
+            @entry = Entry.new
+          end            
+        end
+      end
+    end
   end
 
   def index
 
     if params[:sort]
       selection = params[:sort]
+      if selection == "favorite_count"
+        books = Book.includes(:favorited_users).sort_by {|x|
+          x.favorited_users.includes(:favorites).size
+        }.reverse
+        @books = Kaminari.paginate_array(books).page(params[:page])
+      else
       @books = Book.sort(selection).page(params[:page])
+      end
     else
-      # @books = Book.page(params[:page])
       to = Time.current.at_end_of_day
       from = (to - 7.day).at_beginning_of_day
       books = Book.includes(:favorited_users).
