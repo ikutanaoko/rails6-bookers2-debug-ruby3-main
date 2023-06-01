@@ -17,7 +17,14 @@ class BooksController < ApplicationController
       selection = params[:sort]
       @books = Book.sort(selection).page(params[:page])
     else
-      @books = Book.page(params[:page])
+      # @books = Book.page(params[:page])
+      to = Time.current.at_end_of_day
+      from = (to - 7.day).at_beginning_of_day
+      books = Book.includes(:favorited_users).
+        sort_by {|x|
+          x.favorited_users.includes(:favorites).where(created_at: from...to).size
+        }.reverse
+        @books = Kaminari.paginate_array(books).page(params[:page])
     end
     @book = Book.new
 
