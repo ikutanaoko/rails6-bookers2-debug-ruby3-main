@@ -13,7 +13,7 @@ class UsersController < ApplicationController
         @userEntry.each do |ue|
           if cue.room_id == ue.room_id then
             @isRoom = true
-            @room = cue.room_id
+            @chatroom = cue.room_id
           else
             @room = Room.new
             @entry = Entry.new

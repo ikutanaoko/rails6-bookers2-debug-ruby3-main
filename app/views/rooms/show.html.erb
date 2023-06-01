@@ -2,12 +2,12 @@
 
 <div class="chats">
   <div class="chat">
-    <% if messages.present? %>
+    <% if @messages.present? %>
       <% @messages.each do |message| %>
         <div class="chat-box">
           <div class="chat-face">
             <%= image_tag message.user.get_profile_image(30, 30) %>
-            <strong><% message.user.name %></strong>
+            <strong><%= message.user.name %></strong>
             <%= message.comment %>
             <%= message.created_at.strftime("%Y-%m-%d %H:%M") %>
           </div>
@@ -16,7 +16,7 @@
     <% end %>
   </div>
 
-  <%= alert 
+  <%= alert %>
 
   <div class="posts">
     <%= form_with model: @message do |f| %>

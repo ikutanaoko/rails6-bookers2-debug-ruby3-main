@@ -6,6 +6,6 @@ class MessagesController < ApplicationController
     else
       flash[:alert] = "送信失敗"
     end
-    redirect_to rooms_path(@message.room_id)
+    redirect_to room_path(@message.room_id)
   end
 end
