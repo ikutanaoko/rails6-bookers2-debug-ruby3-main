@@ -1,0 +1,29 @@
+<div class="row chat">
+    <div class="col-6 mx-auto">
+    <% if messages.present? %>
+      <% messages.each do |message| %>
+        <% if message.user == current_user %>
+          <div class="row flex-row-reverse pt-1">
+            <%= image_tag message.user.get_profile_image(30, 30),class:"rounded" %>
+          </div>
+            <!--<strong><%= message.user.name %></strong>-->
+          <div class="row flex-row-reverse">
+            <div class="rounded bg-success text-black text-break ml-2" style="max-width:50%"><%= message.comment %></div>
+            <%= message.created_at.strftime("%m-%d %H:%M") %>
+          </div>
+
+        <% else %>
+          <div class="row pt-1">
+            <%= image_tag message.user.get_profile_image(30, 30),class:"rounded" %>
+            <!--<strong><%= message.user.name %></strong>-->
+          </div>
+          <div class="row">
+            <div class="rounded bg-secondary text-white text-break mr-2" style="max-width:50%"><%= message.comment %></div>
+            <%= message.created_at.strftime("%m-%d %H:%M") %>
+          </div>
+
+        <% end %>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
