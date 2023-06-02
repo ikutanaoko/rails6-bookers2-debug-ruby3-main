@@ -5,7 +5,8 @@ class Book < ApplicationRecord
   has_many :book_comments, dependent: :destroy
   has_many :book_tags,dependent: :destroy
   has_many :tags,through: :book_tags
-  
+  has_many :access_counts, dependent: :destroy
+  has_many :accessed_users, through: :access_counts, source: :user  
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
   

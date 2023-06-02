@@ -7,8 +7,12 @@ class BooksController < ApplicationController
     @user = @book.user
     @book_new = Book.new
     @comment = BookComment.new
-    @book_tags = @book.tags    
+    @book_tags = @book.tags
     @tag_list = Tag.all
+    unless AccessCount.where(created_at: Time.zone.now.all_day).find_by(user_id: current_user.id, book_id: @book.id)
+      access_count =  AccessCount.new(book_id: @book.id, user_id: current_user.id)
+      access_count.save
+    end
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)
     unless @user.id == current_user.id
@@ -20,7 +24,7 @@ class BooksController < ApplicationController
           else
             @room = Room.new
             @entry = Entry.new
-          end            
+          end
         end
       end
     end
@@ -33,6 +37,11 @@ class BooksController < ApplicationController
       if selection == "favorite_count"
         books = Book.includes(:favorited_users).sort_by {|x|
           x.favorited_users.includes(:favorites).size
+        }.reverse
+        @books = Kaminari.paginate_array(books).page(params[:page])
+      elsif selection == "access_count"
+        books = Book.includes(:accessed_users).sort_by {|x|
+          x.accessed_users.includes(:access_count).size
         }.reverse
         @books = Kaminari.paginate_array(books).page(params[:page])
       else
@@ -85,7 +94,7 @@ class BooksController < ApplicationController
     @book.destroy
     redirect_to books_path
   end
-  
+
 
   private
 
@@ -99,6 +108,6 @@ class BooksController < ApplicationController
     unless user.id == current_user.id
       redirect_to books_path
     end
-  end  
+  end
 end
 

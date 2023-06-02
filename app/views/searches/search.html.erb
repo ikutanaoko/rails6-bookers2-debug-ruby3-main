@@ -7,15 +7,26 @@
         <%= render 'books/form', book: @book %>
     </div>
     <div class='col-md-8 offset-md-1'>
-      <h2>Results index</h2>
-        <% @tag_list.each do |list| %>
+      <h2>Result</h2>
+
+        <% if @range == "User" %>
+          <h4 class="mt-2">
+          　<%= @users.count %>件の検索結果...
+          </h4>
+        <% else %>
+          <h4 class="mt-2">
+          　<%= @books.count %>件の検索結果...
+        　</h4>
+          <% @tag_list.each do |list| %>
           <span>
             <%= link_to "#{list.name}(#{list.books.count})", search_path(word: list.name, range: "tag", search: "perfect_match"), class: "btn btn-secondary btn-sm ", style: "font-size: 5px;" %>
-            <% end %>
           </span>
-        
-      <table class="table table-inverse mt-3">
+          <% end %>
+
+        <% end %>
+      <table class="table table-inverse mt-1">
         <% if @range == "User" %>
+
           <thead>
             <tr>
             <th>image</th>
@@ -32,7 +43,7 @@
               <td><%= user.name %></td>
               <td><%= user.followers.count %>人</td>
               <td><%= user.followings.count %>人</td>
-              <td><%= link_to "Show",users_path %></td>
+              <td><%= link_to "Show", user %></td>
             </tr>
             <% end %>
           </tbody>
