@@ -6,9 +6,9 @@
   </div>
 
   <div class="row posts mt-3">
-    <div class="col-6 mx-auto text-right form-group" id="message">
+    <div class="col-5 mx-auto text-right form-group" id="message">
       <%= form_with model: @message,local:false do |f| %>
-        <%= f.text_field :comment,id:"message_field" %>
+        <%= f.text_area :comment,class:"form-control", style: "width: 95%", id:"message_field" %>
         <%= f.hidden_field :room_id, value: @room.id %>
           <%= f.submit "送信",class: "form-submit" %>
       <% end %>
