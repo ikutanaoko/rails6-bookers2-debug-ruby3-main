@@ -9,7 +9,8 @@
   </div>  
   <div class="form-group">
     <%= f.label :image　%>
-    <%=  f.file_field :image, class: "form-control" %>
+    <%= f.file_field :group_image, class: "form-control-file", accept: 'image/*' %>
+
   </div>  
   
   <div class="form-group">

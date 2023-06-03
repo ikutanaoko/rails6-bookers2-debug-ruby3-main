@@ -20,7 +20,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
     if @group.save
-       User_Group.create(group_id: @room.id, user_id: current_user.id)
+       UserGroup.create(group_id: @group.id, user_id: current_user.id)
       redirect_to group_path(@group)
     else
       render 'new'
@@ -32,6 +32,7 @@ class GroupsController < ApplicationController
   end
   
   def update
+    @group = Group.find(params[:id])
     if @group.update(group_params)
       redirect_to group_path(@group)
     else
@@ -47,7 +48,7 @@ class GroupsController < ApplicationController
   
   def ensure_correct_user
     group = Group.find(params[:id])
-    unless group.owener_id == current_user_id
+    unless group.owner_id == current_user.id
       redirect_to groups_path
     end
   end
