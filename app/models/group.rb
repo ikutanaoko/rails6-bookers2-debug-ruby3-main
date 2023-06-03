@@ -1,6 +1,6 @@
 class Group < ApplicationRecord
-  has_many :user_groups
-  has_many :users, through: :user_groups
+  has_many :user_groups, dependent: :destroy
+  has_many :users, through: :user_groups, source: :user
   
   has_one_attached :group_image
   
@@ -12,6 +12,9 @@ class Group < ApplicationRecord
     group_image.variant(resize_to_limit: [width, heigh]).processed
   end
   
+  def includeUser?(user)
+    user_groups.exists?(user_id: user.id)
+  end
   validates :name, presence: true
   validates :introduction, presence: true , length: { maximum: 500 }
 end

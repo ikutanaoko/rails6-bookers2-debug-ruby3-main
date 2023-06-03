@@ -19,8 +19,8 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
-    @group.users << current_user
     if @group.save
+       User_Group.create(group_id: @room.id, user_id: current_user.id)
       redirect_to group_path(@group)
     else
       render 'new'
@@ -38,11 +38,6 @@ class GroupsController < ApplicationController
       render "edit"
     end
   end
-  
-  def join
-    @group = Group.find(params[:id])
-    @group.users << current_user
-    redirect_ to group_path(@group)
   
   private
   

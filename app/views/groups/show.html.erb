@@ -19,6 +19,10 @@
           <td>
             <% if @group.owner_id ==  current_user.id %>
               <%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success" %>
+            <% elsif @group.includeUser?(current_user) %>
+              <%= link_to 'Leave this group', group_user_groups_path(@group), method: :delete, "data-confirm" => "Are you sure?", class: "btn btn-sm btn-danger" %>
+            <% else %>
+              <%= link_to 'Join this group',  group_user_groups_path(@group), class: "btn btn-sm btn-danger" %>
             <% end %>
           </td>
         </tr>
