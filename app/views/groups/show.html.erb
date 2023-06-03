@@ -15,7 +15,7 @@
           <td><%= image_tag @group.get_group_image(70, 70) %></td>
           <td><%= link_to @group.name, group_path(@group) %></td>
           <td><%= @group.introduction %></td>
-          <td><%= @group.users.count %></td>
+          <td><%= @group.users.count %>人参加中</td>
           <td>
             <% if @group.owner_id ==  current_user.id %>
               <%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success" %>
