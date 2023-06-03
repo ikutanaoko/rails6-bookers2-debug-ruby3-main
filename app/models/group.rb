@@ -12,6 +12,6 @@ class Group < ApplicationRecord
     group_image.variant(resize_to_limit: [width, heigh]).processed
   end
   
-  valitates :name, presence: true
-  valitates :introduction, presence: true , length: { maximum: 500 }
+  validates :name, presence: true
+  validates :introduction, presence: true , length: { maximum: 500 }
 end

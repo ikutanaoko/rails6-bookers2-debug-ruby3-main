@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :is_matching_login_user, only: [:edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
     @book = Book.new
@@ -19,8 +19,9 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
+    @group.users << current_user
     if @group.save
-      redirect_to groups_path
+      redirect_to group_path(@group)
     else
       render 'new'
     end
@@ -32,11 +33,16 @@ class GroupsController < ApplicationController
   
   def update
     if @group.update(group_params)
-      redirect_to group_path
+      redirect_to group_path(@group)
     else
       render "edit"
     end
   end
+  
+  def join
+    @group = Group.find(params[:id])
+    @group.users << current_user
+    redirect_ to group_path(@group)
   
   private
   
@@ -44,11 +50,10 @@ class GroupsController < ApplicationController
     params.require(:group).permit(:name, :introduction, :image)
   end
   
-  def is_matching_login_user
-    bookcomment = BookComment.find(params[:id])
-    user = bookcomment.user
-    unless user.id == current_user.id
-      redirect_to book_path(params[:book_id])
+  def ensure_correct_user
+    group = Group.find(params[:id])
+    unless group.owener_id == current_user_id
+      redirect_to groups_path
     end
   end
   

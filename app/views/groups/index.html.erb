@@ -25,6 +25,7 @@
               <td><%= image_tag group.get_group_image(50, 50) %></td>
               <td><%= link_to group.name, group_path(group) %></td>
               <td><%= link_to group.introduction %></td>
+              <td><%= group.users.count %></td>
               <td>
                 <% if group.owner_id ==  current_user.id %>
                   <%= link_to 'Edit', edit_group_path(group), class: "btn btn-sm btn-success" %>
@@ -36,8 +37,5 @@
       </table>
     </div>
     
-    
-    
-    </div>
   </div>
 </div>
