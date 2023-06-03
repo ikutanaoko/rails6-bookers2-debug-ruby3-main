@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_02_144150) do
+ActiveRecord::Schema.define(version: 2023_06_03_031805) do
 
   create_table "access_counts", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -92,6 +92,14 @@ ActiveRecord::Schema.define(version: 2023_06_02_144150) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.text "introduction"
+    t.integer "owner_"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text "comment"
     t.integer "user_id", null: false
@@ -120,6 +128,15 @@ ActiveRecord::Schema.define(version: 2023_06_02_144150) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "user_groups", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_user_groups_on_group_id"
+    t.index ["user_id"], name: "index_user_groups_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -144,4 +161,6 @@ ActiveRecord::Schema.define(version: 2023_06_02_144150) do
   add_foreign_key "entries", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "user_groups", "groups"
+  add_foreign_key "user_groups", "users"
 end
