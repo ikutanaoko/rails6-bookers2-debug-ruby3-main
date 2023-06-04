@@ -19,3 +19,9 @@
   font-size: 12px;
 }
 
+.group_body {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;  
+}

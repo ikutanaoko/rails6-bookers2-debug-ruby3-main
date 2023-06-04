@@ -14,13 +14,13 @@
       <table class='table table-hover table-inverse'>
         <thead>
           <tr>
-            <th></th>
-            <th>GroupName</th>
-            <th>introduction</th>
-            <th colspan='3'></th>
+            <th style="width: 8%"></th>
+            <th style="width: 20%">GroupName</th>
+            <th style="width: 30%">introduction</th>
+            <th colspan='3'  style="width: 30%"></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="table_data">
           <% @groups.each do |group| %>
             <tr>
               <td><%= image_tag group.get_group_image(50, 50) %></td>

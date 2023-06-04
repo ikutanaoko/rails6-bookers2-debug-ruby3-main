@@ -10,7 +10,7 @@
     
     <div class='col-md-8 offset-md-1'>
       <h2>Group Detail</h2>
-      <table class='table table-hover table-inverse'>
+      <table class='table table-hover table-inverse table_data'>
         <tr>
           <td><%= image_tag @group.get_group_image(70, 70) %></td>
           <td><%= link_to @group.name, group_path(@group) %></td>
@@ -27,7 +27,10 @@
           </td>
         </tr>
       </table>
-      <h4>Menbers</h4>
+      <% if @group.owner_id ==  current_user.id %>
+        <%= link_to "Notice an Event",group_new_mail_path(@group), class: "btn btn-sm btn-info" %>
+      <% end %>
+      <h4>Members</h4>
       <table>
         <tbody>
           <% @group.users.each do |user| %>
