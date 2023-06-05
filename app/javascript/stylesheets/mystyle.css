@@ -25,3 +25,16 @@
   white-space: nowrap;
   text-overflow: ellipsis;  
 }
+
+.hidden {
+  display: none;
+}
+
+.submenu h4 {
+  cursor: pointer;  
+}
+
+.submenu h4:hover {
+  color: #b04188;
+  text-decoration: underline;
+}
