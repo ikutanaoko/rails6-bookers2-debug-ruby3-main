@@ -43,7 +43,7 @@
               <td><%= user.name %></td>
               <td><%= user.followers.count %>人</td>
               <td><%= user.followings.count %>人</td>
-              <td><%= link_to "Show", user %></td>
+              <td><%= link_to "Show", user, data: {"turbolinks"=>false} %></td>
             </tr>
             <% end %>
           </tbody>

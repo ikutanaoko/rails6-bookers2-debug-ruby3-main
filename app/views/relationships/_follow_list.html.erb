@@ -13,8 +13,8 @@
       <tbody>
       <% users.each do |user| %>
         <tr>
-          <td><%= image_tag user.get_profile_image, size:'50x50' %></td>
-          <td><%= link_to(users_path) do %><%= user.name %><% end %></td>
+          <td><%= image_tag user.get_profile_image(50, 50) %></td>
+          <td><%= link_to user do %><%= user.name %><% end %></td>
           <td><%= user.followings.count %></td>
           <td><%= user.followers.count %></td>
           <% if user != current_user %>

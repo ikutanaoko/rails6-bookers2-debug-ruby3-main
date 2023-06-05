@@ -36,7 +36,7 @@
           <% @group.users.each do |user| %>
             <tr>
               <td><%= image_tag user.get_profile_image(40, 40) %></td>
-              <td><%= link_to user.name, user_path(user) %></td>
+              <td><%= link_to user.name, user_path(user), data: {"turbolinks"=>false} %></td>
             </tr>
           <% end %>
         </tbody>

@@ -13,7 +13,6 @@ import "bootstrap"
 import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application" 
 import "../stylesheets/mystyle"
-import "script.js"
 
 import Raty from "raty.js"
 window.raty = function(elem,opt) {
