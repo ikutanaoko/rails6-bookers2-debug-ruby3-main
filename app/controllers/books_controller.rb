@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :is_matching_login_user, only: [:update,:edit]
+  before_action :is_matching_login_user, only: [:update,:edit,:destroy]
 
   def show
 

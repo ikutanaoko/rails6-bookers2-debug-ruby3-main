@@ -7,9 +7,9 @@ def create
   @comment = BookComment.new(book_comment_params)
   @comment.user_id = current_user.id
   @comment.book_id = @book.id
-  @comment.save
-  
-
+  unless @comment.save
+    render 'error'
+  end
 end 
 
 def destroy

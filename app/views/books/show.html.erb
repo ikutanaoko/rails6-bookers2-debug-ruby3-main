@@ -52,8 +52,9 @@
       <div id="comments">
         <%= render "books/book_comments", book:@book, comment:@comment %>
       </div>
-      <div><%= render 'layouts/errors', obj: @comment%></div>
-      
+      <div id="comments_error">
+        <%= render 'layouts/errors', obj: @comment %>
+      </div>
     </div>
   </div>
 </div>
