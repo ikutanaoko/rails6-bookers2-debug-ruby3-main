@@ -57,6 +57,7 @@ class BooksController < ApplicationController
         @books = Kaminari.paginate_array(books).page(params[:page])
     end
     @book = Book.new
+    @users = User.all 
 
   end
 

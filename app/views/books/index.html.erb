@@ -8,12 +8,70 @@
       <%= render 'form', book: @book %>
     </div>
     <div class='col-md-8 offset-md-1'>
-      <h2>Books</h2>
-      <%= render '/layouts/sort' %>
-      <div id="index">
-      <%= render 'index', books: @books %>
+        <h2>Books</h2>
+      <div class="row">
+        <%= render '/layouts/sort' %>
+        <div id="index">
+        <%= render 'index', books: @books %>
+        </div>
+      </div>
+      
+      <div class="row no-gutters">
+        <div class="col-5">
+          <table class="text-center">
+            <thead>
+              <tr>
+                <th>ユーザー名</th>
+                <th>投稿数</th>
+                <th>今週の投稿</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @users.each do |user| %>  
+                <tr>
+                  <td><%= user.name %></td>
+                  <td><%= user.books.count %></td>
+                  <td><%= user.books.created_this_week.count %></td>
+                </tr>
+              <% end %>
+            </tbody>  
+          </table>
+        </div>
+        <div class="col-7">
+          <canvas id="booksBarChart" class="mr-0"></canvas> 
+        </div>
       </div>
 
     </div>
   </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+   <script>
+   window.onload = function () {
+        let context = document.querySelector("#booksBarChart").getContext('2d')
+        new Chart(context, {
+          type: 'bar',
+          data: {
+            labels: <%= raw @users.pluck(:name).to_json %>,
+            datasets: [{
+              label: "今週の投稿数",
+
+              backgroundColor : 'rgba(201,0,138,0.5)',
+              data: <%= raw @users.map{ |user| user.books.created_this_week.count}.to_json %>,
+            }],
+          },
+          options: {
+            responsive: false,
+            scales: {
+              y: {
+                min: 0,
+                max: 10,
+
+              }
+            }
+          }
+        });
+      }
+    </script>
