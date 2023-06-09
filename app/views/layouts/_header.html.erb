@@ -8,6 +8,18 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
+          <% if unchecked_notifications.any? %>
+            <li>
+              <%= link_to notifications_path, class:"nav-link text-light" do %>
+              <i class="fas fa-bell" style: "color:tomato;"></i></i>Notice
+            </li>
+          <% else %>
+            <li>
+              <%= link_to notifications_path, class:"nav-link text-light" do %>
+              <i class="fas fa-check"></i>Notice
+            </li>
+          <% end %>
+          
           <li>
             <%= link_to user_path(current_user),class: 'nav-link text-light' do %>
               <i class="fas fa-home"></i> Home

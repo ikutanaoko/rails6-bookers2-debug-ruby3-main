@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'notifications/index'
   get 'groups/index'
   get 'groups/show'
   get 'groups/edit'
@@ -36,6 +37,9 @@ Rails.application.routes.draw do
     get "send/mail" => "groups#send_mail"
   end
   resources :user_groups, only: [:index]
+  
+  resources :notifications, only: [:index, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
 
 end

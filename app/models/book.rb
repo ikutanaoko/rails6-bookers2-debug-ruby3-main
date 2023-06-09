@@ -7,6 +7,9 @@ class Book < ApplicationRecord
   has_many :tags,through: :book_tags
   has_many :access_counts, dependent: :destroy
   has_many :accessed_users, through: :access_counts, source: :user  
+  has_many :notifications, dependent: :destroy
+ 
+ 
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
   
@@ -58,6 +61,21 @@ class Book < ApplicationRecord
     end
     
   end
+  
+  def create_notification_by(current_user)
+    notification = current_user.active_notifications.new(
+      book_id: id,
+      visited_id: user_id,
+      action: 'book_comment'
+      )
+    # if notification.visitor_id == notification.visited_id
+    #   notification.checked = true
+    # end
+    if notification.valid?
+    notification.save
+    end
+  end
+
   
   scope :created_today, -> { where(created_at: Time.zone.now.all_day) }
   scope :created_days_ago, ->(n) { where(created_at: n.days.ago.all_day) }

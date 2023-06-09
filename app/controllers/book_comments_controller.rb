@@ -7,7 +7,9 @@ def create
   @comment = BookComment.new(book_comment_params)
   @comment.user_id = current_user.id
   @comment.book_id = @book.id
-  unless @comment.save
+  if @comment.save
+  @book.create_notification_by(current_user)
+  else
     render 'error'
   end
 end 
