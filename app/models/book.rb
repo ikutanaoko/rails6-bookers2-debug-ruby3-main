@@ -62,7 +62,7 @@ class Book < ApplicationRecord
     
   end
   
-  def create_notification_by(current_user)
+  def create_notification_comment(current_user)
     notification = current_user.active_notifications.new(
       book_id: id,
       visited_id: user_id,

@@ -2,9 +2,14 @@
   <% notifications.each do |notification| %>
   <li>
     <%= image_tag notification.visiter.get_profile_image(30, 30) %>
-    <strong><%= link_to user_path(notification.visiter_id) do %><%= notification.visiter.name %><% end %></strong>さんが
-    <strong><%= link_to book_path(notification.book_id) do %><%= notification.book.title %><% end %></strong>にコメントしました。
-    <%= "(#{time_ago_in_words(notification.created_at)} 前)" %><p class="text-right"><%= link_to notification_path(notification.id), method: :delete,class:"btn btn-light" do %>削除<i class="fas fa-trash"></i><% end %></p>
+    <strong><%= link_to user_path(notification.visiter_id) do %><%= notification.visiter.name %><% end %></strong>さんから
+    <% case notification.action %>
+    <% when 'message' then %>
+      <strong><%= link_to room_path(notification.room_id) do %>新着メッセージ<% end %></strong>があります。
+    <% else %>
+      <strong><%= link_to book_path(notification.book_id) do %><%= notification.book.title %><% end %></strong>にコメントがありました。
+    <% end %>
+      <%= "(#{time_ago_in_words(notification.created_at)} 前)" %><p class="text-right"><%= link_to notification_path(notification.id), method: :delete,class:"btn btn-light" do %>削除<i class="fas fa-trash"></i><% end %></p>
   </li>
   <% end %>
 </ul>

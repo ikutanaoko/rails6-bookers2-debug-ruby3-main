@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_09_101024) do
+ActiveRecord::Schema.define(version: 2023_06_10_045501) do
 
   create_table "access_counts", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(version: 2023_06_09_101024) do
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "room_id"
   end
 
   create_table "relationships", force: :cascade do |t|
