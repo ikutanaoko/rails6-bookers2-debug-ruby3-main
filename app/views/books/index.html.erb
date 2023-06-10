@@ -48,8 +48,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-   <script>
-   window.onload = function () {
+   <script >
+   $(document).ready(function () {
         let context = document.querySelector("#booksBarChart").getContext('2d')
         new Chart(context, {
           type: 'bar',
@@ -73,5 +73,5 @@
             }
           }
         });
-      }
+      });
     </script>
