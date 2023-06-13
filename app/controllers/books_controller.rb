@@ -62,6 +62,7 @@ class BooksController < ApplicationController
   end
 
   def create
+　
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     tag_list=params[:book][:name].split("/")
@@ -73,7 +74,7 @@ class BooksController < ApplicationController
       render 'index'
     end
   end
-
+　
   def edit
     @book = Book.find(params[:id])
     @tags = @book.tags.pluck(:name).join('/')
