@@ -62,7 +62,6 @@ class BooksController < ApplicationController
   end
 
   def create
-　
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     tag_list=params[:book][:name].split("/")
@@ -70,11 +69,35 @@ class BooksController < ApplicationController
       @book.save_tag(tag_list)
       redirect_to book_path(@book), notice: "You have created book successfully."
     else
-      @books = Book.all
+      if params[:sort]
+      selection = params[:sort]
+        if selection == "favorite_count"
+          books = Book.includes(:favorited_users).sort_by {|x|
+            x.favorited_users.includes(:favorites).size
+          }.reverse
+          @books = Kaminari.paginate_array(books).page(params[:page])
+        elsif selection == "access_count"
+          books = Book.includes(:accessed_users).sort_by {|x|
+            x.accessed_users.includes(:access_count).size
+          }.reverse
+        @books = Kaminari.paginate_array(books).page(params[:page])
+        else
+        @books = Book.sort(selection).page(params[:page])
+        end
+      else
+        to = Time.current.at_end_of_day
+        from = (to - 7.day).at_beginning_of_day
+        books = Book.includes(:favorited_users).
+          sort_by {|x|
+            x.favorited_users.includes(:favorites).where(created_at: from...to).size
+          }.reverse
+        @books = Kaminari.paginate_array(books).page(params[:page])
+      end
+      @users = User.all
       render 'index'
     end
   end
-　
+
   def edit
     @book = Book.find(params[:id])
     @tags = @book.tags.pluck(:name).join('/')
