@@ -7,11 +7,13 @@ class NotificationsController < ApplicationController
   end
   
   def destroy
-    if params[:id].present?
-    @notification = Notification.find(params[:id]).destroy
-    else
-    @notifications = current_user.passive_notifications.destroy_all
-    end
+    notification = Notification.find(params[:id]).destroy
+
+  end
+  
+  def destroy_all
+    current_user.passive_notifications.destroy_all
     redirect_to notifications_path
   end
+
 end
