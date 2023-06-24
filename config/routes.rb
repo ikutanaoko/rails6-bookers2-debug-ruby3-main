@@ -39,10 +39,10 @@ Rails.application.routes.draw do
   resources :user_groups, only: [:index]
   
   resources :notifications, only: [:index, :destroy] do
-  collection do
-    delete 'destroy_all'
+    collection do
+      delete 'destroy_all'
+    end
   end
-end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
 
